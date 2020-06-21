@@ -8,7 +8,6 @@ export default class GotService {
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, ststus: ${res.status}`);
         }
-
         return await res.json();
     }
     async getAllCharacters() {
@@ -32,12 +31,19 @@ export default class GotService {
         return this.getResource(`/books/${id}`);
     }
     _transformCharacter(char) {
+        for(let x in char) {
+            if (char[x] === "") {
+                char[x] = "no info";
+            }
+        }
+        const id =char.url.slice(49)
         return {
             name: char.name,
             gender: char.gender,
             born: char.born,
             died: char.died,
-            culture: char.culture
+            culture: char.culture,
+            id: id
         }
     }
     _transformHouse(house){
