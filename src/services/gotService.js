@@ -2,7 +2,7 @@ export default class GotService {
     constructor(){
         this._apiBase = 'https://www.anapioficeandfire.com/api';
     }
-    async getResource(url) {
+    getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
 
         if (!res.ok) {
@@ -10,58 +10,72 @@ export default class GotService {
         }
         return await res.json();
     }
-    async getAllCharacters() {
+    getAllCharacters = async () => {
         const res = await this.getResource("/characters?page=5&pageSize=10");
         return res.map(this._transformCharacter);
     }
-    async getCharacter(id){
+    getCharacter = async (id) => {
         const character = await this.getResource(`/characters/${id}`);
         return this._transformCharacter(character);
     }
-    getAllHouses() {
-        return this.getResource("/houses");
+    getAllHouses = async () => {
+        const res = await this.getResource("/houses/");
+        return res.map(this._transformHouse);
     }
-    getHouse(id){
-        return this.getResource(`/houses/${id}`);
+    getHouse = async (id) => {
+        const house = await this.getResource(`/houses/${id}`);
+        return this._transformHouse(house);
     }
-    getAllBooks() {
-        return this.getResource("/books");
+    getAllBooks = async () => {
+        const res = await this.getResource("/books");
+        return res.map(this._transformBook)
     }
-    getBooks(id){
-        return this.getResource(`/books/${id}`);
+    getBook = async (id) => {
+        const book = await this.getResource(`/books/${id}`);
+        return this._transformBook(book);
     }
-    _transformCharacter(char) {
-        for(let x in char) {
-            if (char[x] === "") {
-                char[x] = "no info";
-            }
+
+    isSet(data) {
+        if (data && data.toString()) {
+            return data
+        } else {
+            return "no info"
         }
-        const id =char.url.slice(49)
+    }
+
+    _extractId = (item) => {
+        const idRegExp = /[0-9]{1,4}/;
+        return item.url.match(idRegExp)[0];
+    }
+
+    _transformCharacter = (char) => {
         return {
-            name: char.name,
-            gender: char.gender,
-            born: char.born,
-            died: char.died,
-            culture: char.culture,
-            id: id
+            name: this.isSet(char.name),
+            gender: this.isSet(char.gender),
+            born: this.isSet(char.born),
+            died: this.isSet(char.died),
+            culture: this.isSet(char.culture),
+            id: this._extractId(char)
         }
     }
-    _transformHouse(house){
+    _transformHouse = (house) => {
         return {
-            name: house.name,
-            region: house.region,
-            words: house.words,
-            titles: house.titles,
-            overlord: house.overlord,
-            anscestralWeapons: house.anscestralWeapons
+            name: this.isSet(house.name),
+            region: this.isSet(house.region),
+            words: this.isSet(house.words),
+            titles: this.isSet(house.titles),
+            overlord: this.isSet(house.overlord),
+            anscestralWeapons: this.isSet(house.anscestralWeapons),
+            id: this._extractId(house)
         }
     }
-    _transformBook(book) {
+    _transformBook = (book) => {
         return {
             name: book.name,
             numberOfPages: book.numberOfPages,
             publisher: book.publisher,
-            released: book.released
+            released: book.released,
+            id: this._extractId(book)
         }
     }   
 }
