@@ -56,13 +56,6 @@ export default class ItemDetails extends Component {
                     char
                 })
             })
-
-        // this.gotService.getCharacter(charId)
-        //     .then((char) => {
-        //         this.setState({char})
-        //     })
-            
-        
     }
 
     render() {

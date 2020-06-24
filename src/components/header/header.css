@@ -8,6 +8,8 @@
     font-size: 24px;
     color: #fff;
     margin: 0;
+    font-family: 'Game of Thrones';
+    letter-spacing: 2px;
 }
 .header-links {
     display: flex;

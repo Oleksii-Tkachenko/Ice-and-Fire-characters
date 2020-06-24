@@ -1,3 +1,10 @@
+@font-face {
+	font-family: 'Game of Thrones';
+	/* font-display: swap; */
+	src: url('./fonts/Game\ of\ Thrones.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -9,11 +16,40 @@ body {
     background: url('img/got.jpeg') center center no-repeat;
     background-size: cover;
     font-size: 16px;
-    height: 100%;	
+    height: 100%;
+    font-family: 'Game of Thrones';	
+    padding: 0.01% 0;
 }
 .toggleButton {
     margin: 0 0 10px 3px;
+    font-family: 'Game of Thrones';	
+    letter-spacing: 2px;
 }
 .random-block {
     width: 540px;
+}
+.main-header {
+    font-family: 'Game of Thrones';	
+    color: #fff;
+    margin-top: 140px;
+}
+.not-found-header {
+    font-family: 'Game of Thrones';	
+    color: #fff;
+    margin-top: 140px;
+    text-align: center;
+    font-size: 45px;
+    letter-spacing: 2px;
+}
+.main-link {
+    display: block;
+    font-family: 'Game of Thrones';	
+    color: #fff !important;
+    margin: 408px auto 0;
+    width: 400px;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+    background: #6c757d;
+    padding: 10px 0 7px;
 }

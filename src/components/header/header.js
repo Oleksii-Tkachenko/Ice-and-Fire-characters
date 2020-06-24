@@ -6,19 +6,19 @@ const Header = () => {
     return (
         <div className='header-block'>
             <h3 className='header-title'>
-                <Link to='/'>
+                <Link to='/main/'>
                 Game of Thrones DB
                 </Link>
             </h3>
             <ul className='header-links'>
                 <li>
-                    <Link to='/characters/'>Characters</Link>
+                    <Link to='/main/characters/'>Characters</Link>
                 </li>
                 <li>
-                    <Link to='/houses/'>Houses</Link>
+                    <Link to='/main/houses/'>Houses</Link>
                 </li>
                 <li>
-                    <Link to='/books/'>Books</Link>   
+                    <Link to='/main/books/'>Books</Link>   
                 </li>
             </ul>
         </div>

@@ -4,8 +4,6 @@ import ErrorMessage from '../errorMessage';
 import gotService from '../../services/gotService';
 import {withRouter} from 'react-router-dom';
 
-// import {withRouter} from 'react-router-dom';
-
 class BooksPage extends Component {
     gotService = new gotService();
 
@@ -25,12 +23,15 @@ class BooksPage extends Component {
         }
 
         return (
-            <ItemList 
-                onItemSelected={(itemId) => {
-                    this.props.history.push(itemId)
-                }}
-                getData={this.gotService.getAllBooks}
-                renderItem={({name}) => name}/>
+            <div className='col-md-6'>
+                <ItemList 
+                    onItemSelected={(itemId) => {
+                        this.props.history.push(itemId)
+                    }}
+                    getData={this.gotService.getAllBooks}
+                    renderItem={({name}) => name}/>
+            </div>
+            
         )
     }
 }
